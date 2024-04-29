@@ -2,14 +2,53 @@
 const currentYear = new Date().getFullYear();
 ---
 
-<footer
-  class="opacity-80 m-4 mt-16 mx-auto container lg:max-w-2xl mb-10 flex justify-between p-3"
->
-  <div>
-    <span
+<footer class="mt-40 flex justify-between p-3 w-full bg-[#121212]">
+  <div class="flex w-full mx-4 flex-col content-end justify-end gap-y-2">
+    <span class="ml-auto hidden md:block"
       >© {currentYear}
-      <a class="hover:underline" href="https://github.com/CrashLanXD">⊂└メᕤ</a>.
-      Casi los derechos reservados
+      <a class="hover:underline" target="_blank" href="https://github.com/CrashLanXD">⊂└メᕤ</a>.
+      Algunos derechos reservados
+    </span>
+    <span class="h-px w-2/3 block bg-[#76e99e] ml-auto"></span>
+    <span class="h-px w-full block bg-[#76e99e]"></span>
+  </div>
+  <div class="flex items-center justify-between w-auto gap-x-5">
+    <span class="text-lg transition w-[138px] ml-2 -mr-2 -mb-3">
+      <div
+        class="box p-2 text-[#76e99e] font-semibold relative flex justify-center items-center h-9"
+      >
+        <span class="trapezoid"></span>
+        Hello,
+      </div>
+    </span>
+    <span class="text-lg transition w-[138px] mr-2 -ml-2 -mb-3">
+      <div
+        class="box p-2 text-[#76e99e] font-semibold relative flex justify-center items-center h-9"
+      >
+        <span class="trapezoid"></span>
+        World!
+      </div>
     </span>
   </div>
+  <div class="flex w-full mx-4 flex-col content-end justify-end gap-y-2">
+    <span class="hidden md:block">by CrashLanXD</span>
+    <span class="h-px w-2/3 block bg-[#76e99e] mr-auto"></span>
+    <span class="h-px w-full block bg-[#76e99e]"></span>
+  </div>
 </footer>
+
+<style>
+  .box {
+    border: 0.13rem solid #76e99e;
+  }
+
+  .trapezoid {
+    position: absolute;
+    top: -28px;
+    left: 7px;
+    width: 120px;
+    border-bottom: 20px solid #76e99e;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+  }
+</style>
