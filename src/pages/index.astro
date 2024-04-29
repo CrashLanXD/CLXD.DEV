@@ -2,6 +2,9 @@
 import Layout from "../layouts/Layout.astro";
 import Card from "../components/Card.astro";
 import Hero from "../components/Hero.astro";
+import Section from "../components/Section.astro";
+import Projects from "../components/Projects.astro";
+import CodeIcon from "../components/icons/CodeIcon.astro";
 ---
 
 <Layout
@@ -9,7 +12,18 @@ import Hero from "../components/Hero.astro";
   description="Hola!, spy CrashLanXD ;)"
 >
   <main>
-		<Hero/>
+    <Section class="py-16 md:py-36" id="home">
+      <Hero />
+    </Section>
+
+    <Section id="projects">
+      <h2
+        class="flex items-center mb-6 text-5xl font-semibold gap-x-3 text-black/80 dark:text-white"
+      >
+        <CodeIcon class="size-16" />Proyectos
+      </h2>
+      <Projects />
+    </Section>
   </main>
 </Layout>
 

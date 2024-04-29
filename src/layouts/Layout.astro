@@ -1,6 +1,7 @@
 ---
 import { ViewTransitions } from "astro:transitions";
 import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
 
 interface Props {
   title: string;
@@ -21,9 +22,10 @@ const { title, description } = Astro.props;
     <title>{title}</title>
   </head>
   <body class="relative text-black dark:text-white">
-		<!-- bg -->
+    <!-- bg -->
     <Header />
     <slot />
+    <Footer />
   </body>
 </html>
 <style is:global>
@@ -37,9 +39,16 @@ const { title, description } = Astro.props;
       system-ui,
       -apple-system,
       sans-serif;
+    scroll-behavior: smooth;
   }
 
   body {
     background: #121212;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
   }
 </style>

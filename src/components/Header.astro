@@ -3,11 +3,57 @@ import CLXD from "./icons/clxd.astro";
 ---
 
 <header
-  class="fixed top-0 z-10 flex items-center justify-center w-full mx-auto mt-4 bg-[#121212e2]"
+  class="fixed top-0 z-10 flex items-center justify-center w-full mx-auto bg-[#121212] py-2"
 >
-  <nav class="flex w-96 items-center justify-between">
-    <a class="" href="/#proyects">Proyectos</a>
-    <a href="/#home"><CLXD class="size-14" /></a>
-    <a href="/#experience">Experiencia</a>
+  <div class="flex w-full mx-4 flex-col content-end justify-end gap-y-2">
+    <span class="h-px w-full block bg-[#76e99e]"></span>
+    <span class="h-px w-2/3 block bg-[#76e99e] ml-auto"></span>
+  </div>
+  <nav class="flex items-center justify-between w-auto gap-x-5">
+    <a class="text-lg transition w-[138px] ml-4" href="/#projects">
+      <div
+        class="bg-[#76e99e] p-2 text-[#121212] font-semibold relative flex justify-center items-center h-9 hover:underline"
+      >
+        Proyectos
+        <span class="l"></span>
+      </div>
+    </a>
+    <div class="flex items-center">
+      <a href="/#home">
+        <CLXD
+          class="size-14 text-[#76e99e] hover:text-white fill-[#57b275] hover:fill-[#969197] transition hover:scale-105"
+        />
+      </a>
+    </div>
+    <a class="text-lg transition w-[138px] mr-4" href="/#experience">
+      <div
+        class="bg-[#76e99e] p-2 text-[#121212] font-semibold relative flex justify-center items-center h-9 hover:underline transition-colors"
+      >
+        <span class="r"></span>
+        Experiencia
+      </div>
+    </a>
   </nav>
+  <div class="flex w-full mx-4 flex-col content-end justify-end gap-y-2">
+    <span class="h-px w-full block bg-[#76e99e]"></span>
+    <span class="h-px w-2/3 block bg-[#76e99e] mr-auto"></span>
+  </div>
 </header>
+
+<style>
+
+  .r, .l {
+    width: 30px;
+    height: 30px;
+    background-color: #121212;
+    position: relative;
+    transform: rotate(45deg);
+  }
+  .r {
+    left: -20px;
+  }
+
+  .l {
+    right: -30px;
+  }
+</style>
