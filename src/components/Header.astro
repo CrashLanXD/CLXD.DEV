@@ -3,7 +3,7 @@ import CLXD from "./icons/clxd.astro";
 ---
 
 <header
-  class="fixed top-0 z-10 flex items-center justify-center w-full mx-auto bg-[#121212] py-2"
+  class="fixed top-0 z-10 flex items-center justify-center w-full mx-auto bg-[#f4f4f0] dark:bg-[#121212] py-2"
 >
   <div class="flex w-full mx-4 flex-col content-end justify-end gap-y-2">
     <span class="h-px w-full block bg-[#76e99e]"></span>
@@ -15,7 +15,7 @@ import CLXD from "./icons/clxd.astro";
         class="bg-[#76e99e] p-2 text-[#121212] font-semibold relative flex justify-center items-center h-9 hover:underline"
       >
         Proyectos
-        <span class="l"></span>
+        <span class="l bg-[#f4f4f0] dark:bg-[#121212]"></span>
       </div>
     </a>
     <div class="flex items-center">
@@ -29,7 +29,7 @@ import CLXD from "./icons/clxd.astro";
       <div
         class="bg-[#76e99e] p-2 text-[#121212] font-semibold relative flex justify-center items-center h-9 hover:underline"
       >
-        <span class="r"></span>
+        <span class="r bg-[#f4f4f0] dark:bg-[#121212]"></span>
         Sobre Mí
       </div>
     </a>
@@ -45,7 +45,6 @@ import CLXD from "./icons/clxd.astro";
   .l {
     width: 30px;
     height: 30px;
-    background-color: #121212;
     position: relative;
     transform: rotate(45deg);
   }
