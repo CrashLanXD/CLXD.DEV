@@ -7,7 +7,7 @@ const PROJECTS = [
   {
     title: "{ 101 proyectos js }",
     description:
-      "101 proyectos de codigo abierto hechos con javascrpit vanilla",
+      "Diseño e idea originales de Midudev, '101 Proyectos de Código Abierto' desarrollados en JavaScript Vanilla. Esta iniciativa encapsula una amplia gama de proyectos, ofreciendo un vistazo al potencial y la versatilidad de JavaScript en su forma más pura. Desde su diseño hasta su implementación, cada proyecto representa una expresión única de creatividad y habilidad técnica, destinada a inspirar y educar a la comunidad de desarrolladores.",
     link: "https://javascript101clxd.netlify.app",
     github: "https://github.com/CrashLanXD/101-proyectos-javascript",
     image: "/projects/101proyectosJS.webp",
@@ -18,26 +18,31 @@ const PROJECTS = [
 <div class="flex flex-col gap-y-16">
   {
     PROJECTS.map(({ image, title, description, link, github }) => (
-      <article class="flex flex-col space-x-0 space-y-8 group md:flex-row md:space-x-8 md:space-y-0">
-        <div class="w-full md:w-1/2">
-          <div class="relative flex flex-col items-center col-span-6 row-span-5 gap-8 transition duration-500 ease-in-out transform shadow-xl overflow-clip rounded-xl sm:rounded-xl md:group-hover:-translate-y-1 md:group-hover:shadow-2xl lg:border lg:border-gray-800 lg:hover:border-gray-700 lg:hover:bg-gray-800/50">
+      <article class="flex flex-col space-x-0 group">
+        <div class="w-full">
+          <a
+            href={github}
+            target="_blank"
+            aria-label={`Ir al repositorio del proyecto ${title}`}
+            class="relative flex flex-col items-center gap-8 transition duration-500 ease-in-out transform shadow-xl overflow-clip rounded-xl sm:rounded-xl md:hover:-translate-y-1 md:hover:shadow-2xl"
+          >
             <img
               alt={`Imagen del proyecto ${title}`}
-              class="object-cover object-top w-full h-56 transition duration-500 sm:h-full md:scale-110"
+              class="object-cover object-top w-full h-56 transition duration-500 sm:h-full md:scale-110 aspect-video"
               loading="lazy"
               src={image}
             />
-          </div>
+          </a>
         </div>
 
-        <div class="w-full md:w-1/2 md:max-w-lg">
-          <h3 class="text-3xl font-bold text-neutral-800 dark:text-neutral-300">
+        <div class="w-full pt-4">
+          <h3 class="text-4xl font-bold text-neutral-800 dark:text-neutral-300">
             {title}
           </h3>
           <div class="flex flex-wrap mt-2">
-            <div class="mt-2 text-neutral-700 dark:text-neutral-400">
+            <p class="mt-2 text-neutral-700 dark:text-neutral-400 text-pretty">
               {description}
-            </div>
+            </p>
             <footer class="flex items-end justify-start mt-4 gap-x-4">
               {github && (
                 <LinkButton href={github}>
