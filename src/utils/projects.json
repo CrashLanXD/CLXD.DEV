@@ -1,0 +1,18 @@
+[
+  {
+    "title": "{ 101 proyectos js }",
+    "description":
+      "Una iniciativa de Midudev. Colección de proyectos de código abierto, desarrollados exclusivamente con HTML, CSS y JavaScript vanilla. Una página web demuestra el potencial y la versatilidad de JavaScript en su forma más pura, sin el uso de bibliotecas o frameworks.",
+    "link": "https://javascript101clxd.netlify.app",
+    "github": "https://github.com/CrashLanXD/101-proyectos-javascript",
+    "image": "/projects/101proyectosJS.webp"
+  },
+  {
+    "title": "cecytem marketplace",
+    "description":
+      "Una página web diseñada para mi escuela, compuesta por dos secciones principales. Un marketplace que actualmente presenta productos obtenidos de la API Fakestore de Platzi. Y una sección informativa que detalla quiénes somos, nuestra misión, y las actividades que se realizan en nuestras carreras. El diseño es el aspecto más destacado de este proyecto.",
+    "link": "https://cecytem-marketplace.vercel.app/",
+    "github": "https://github.com/CrashLanXD/cecytem_marketplace",
+    "image": "/projects/cecytemMarketplace.webp"
+  }
+]
