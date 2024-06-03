@@ -1,40 +1,89 @@
 ---
-const personalImageAlt = "Aqui voy yo!";
+import Clock from "./Clock.astro";
+import XIcon from "./icons/XIcon.astro";
+import HTMLIcon from "./icons/HTMLIcon.astro";
+import CSSIcon from "./icons/CSSIcon.astro";
+import JSIcon from "./icons/JSIcon.astro";
+import ReactIcon from "./icons/ReactIcon.astro";
+import TailwindIcon from "./icons/TailwindIcon.astro";
+import AstroIcon from "./icons/AstroIcon.astro";
+import JavaIcon from "./icons/JavaIcon.astro";
+import { Image } from "astro:assets";
+
+const personalImageAlt = "Aquí voy yo!";
+const age = 16;
 ---
 
-<article
-  class="flex flex-col items-center justify-center gap-8 text-gray-700 dark:text-gray-300 md:flex-row"
+<div
+  class="grid grid-cols-2 md:grid-cols-4 gap-4 text-xl [&>div]:bg-[--background] [&>div]:rounded-xl [&>div]:px-7 [&>div]:p-5"
 >
+  <div class="col-span-2 md:col-span-3 row-start-1 flex flex-col">
+    <h4
+      class="text-2xl [&>strong]:text-[--secondary-600] [&>strong]:font-semibold py-3"
+    >
+      Soy <strong>Eduardo Sanchez.</strong>
+    </h4>
+    <p class="text-pretty">
+      Un desarrollador de software que disfruta los desafíos. Me encanta crear
+      problemas y encontrar soluciones. Los algoritmos y la lógica detrás de
+      cómo funcionan las computadoras siempre han sido de gran interés para mí.
+    </p>
+  </div>
+  <div class="col-span-2 md:row-start-1 flex justify-center">
+    <Image
+      src="/images/clxd_duo.webp"
+      alt={personalImageAlt}
+      width={224}
+      height={224}
+      loading="eager"
+      class="object-cover object-top size-36 md:size-56 aspect-square rounded-xl"
+    />
+  </div>
   <div
-    class="[&>p]:mb-4 [&>p>strong]:text-green-500 [&>p>strong]:font-normal [&>p>strong]:font-mono text-pretty order-2 md:order-1"
+    class="row-start-5 md:row-start-2 flex flex-col justify-center items-center text-center text-4xl font-semibold"
   >
-    <p>
-      Me llamo <strong>Eduardo Sánchez</strong>. Empecé en la programación
-      cuando tenía 15 años. Actualmente tengo 16 años...
-    </p>
-
-    <p>
-      Estudié Programación y. Desde entonces disfruto creando <strong
-        >soluciones web</strong
-      >
-      para los usuarios y algoritmos.
-    </p>
-
-    <p>
-      Me encanta <strong>crear soluciones</strong>. Adicto a los desafíos.
-    </p>
-
-    <p>Cuento con bastante experiencia. Aunque no he trabajado aún en ningún sitio :D</p>
-
-    <p>Pro Programmer.</p>
+    <span>{age}</span>
+    <span>Años</span>
   </div>
 
-  <!-- <img
-    width="200"
-    height="200"
-    src="/me.png"
-    alt={personalImageAlt}
-    class="order-1 object-cover w-64 h-full p-1 md:order-2 lg:p-2 lg:w-64 aspect-square rounded-md bg-green-900/20 dark:bg-green-500/5 ring-1 ring-green-800/70 dark:ring-green-300/20"
-    style="object-position: 50% 50%"
-  /> -->
-</article>
+  <div class="col-span-2 md:col-start-2 flex flex-col justify-center">
+    <h3>Zona Horaria</h3>
+    <div class="flex flex-col">
+      <Clock />
+    </div>
+  </div>
+
+  <div class="row-start-5 md:col-start-4 md:row-start-2 flex flex-col justify-center items-center text-center text-4xl">
+    <a
+      target="_blank"
+      rel="noopener noreferrer"
+      title="@CrashLanXD"
+      aria-label="@CrashLanXD"
+      href="https://x.com/crashlanxd"
+      class="hover:text-[--primary-400] transition-colors"
+    >
+      <XIcon class="size-20" />
+    </a>
+  </div>
+
+  <div class="col-span-2 row-start-6 md:row-start-3">
+    <p class="text-pretty">
+      Lo que me motiva es la posibilidad de ser cada vez mejor. La idea de estar en
+      constante aprendizaje y de poder crear cosas asombrosas a partir de conceptos
+      simples me impulsa a seguir adelante.
+    </p>
+  </div>
+
+  <div class="col-span-2 row-start-3 flex flex-col justify-center gap-y-3">
+    <h3>Tech Stack</h3>
+    <div class="flex justify-evenly [&>svg]:size-10 [&>svg]:md:size-16">
+      <HTMLIcon/>
+      <CSSIcon/>
+      <JSIcon/>
+      <AstroIcon class="text-[--text]"/>
+      <ReactIcon/>
+      <TailwindIcon/>
+      <JavaIcon/>
+    </div>
+  </div>
+</div>

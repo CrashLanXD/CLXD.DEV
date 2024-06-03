@@ -1,58 +1,103 @@
 ---
-import CLXD from "./icons/clxd.astro";
+import CLXD from "./icons/CLXD.astro";
 ---
 
 <header
-  class="fixed top-0 z-10 flex items-center justify-center w-full mx-auto bg-[#f4f4f0] dark:bg-[#121212] py-2"
+  class="fixed top-0 w-full z-20 py-2 px-4 md:px-10 flex backdrop-blur-lg justify-between items-center text-sm md:text-lg text-[--text] bg-neutral-200/75 dark:bg-neutral-900/75"
 >
-  <div class="flex w-full mx-4 flex-col content-end justify-end gap-y-2">
-    <span class="h-px w-full block bg-[#76e99e]"></span>
-    <span class="h-px w-2/3 block bg-[#76e99e] ml-auto"></span>
-  </div>
-  <nav class="flex items-center justify-between w-auto gap-x-5">
-    <a class="text-lg transition w-[138px] ml-4" href="/#projects">
-      <div
-        class="bg-[#76e99e] p-2 text-[#121212] font-semibold relative flex justify-center items-center h-9 hover:underline rounded-sm"
-      >
-        Proyectos
-        <span class="l bg-[#f4f4f0] dark:bg-[#121212]"></span>
-      </div>
-    </a>
-    <div class="flex items-center">
-      <a href="/#home" aria-label="volver al inicio">
-        <CLXD
-          class="size-14 text-[#76e99e] hover:text-[#060606] dark:hover:text-white fill-[#57b275] hover:fill-[#969197] transition hover:scale-105"
-        />
-      </a>
+</div>
+  <div class="h-full gap-2 hidden md:flex items-center">
+    <CLXD
+      class="size-10 p-1 text-white fill-neutral-500 bg-[#121212] rounded-full"
+    />
+    <div>
+      <h3>CLXD</h3>
+      <h4>Frontend Developer</h4>
     </div>
-    <a class="text-lg transition w-[138px] mr-4" href="/#aboutMe">
-      <div
-        class="bg-[#76e99e] p-2 text-[#121212] font-semibold relative flex justify-center items-center h-9 hover:underline rounded-sm"
-      >
-        <span class="r bg-[#f4f4f0] dark:bg-[#121212]"></span>
-        Sobre Mí
-      </div>
-    </a>
+  </div>
+
+  <nav
+    class="flex gap-2 md:gap-12 [&>ul]:p-1 [&>ul]:bg-[--background] [&>ul]:rounded-xl [&>ul]:flex [&>ul>li]:flex [&>ul>li]:items-center [&>ul>li]:text-center [&>ul>li>a]:inline-block [&>ul>li>a]:px-4 [&>ul>li>a]:py-2 [&>ul>li>a]:transition-colors font-medium"
+  >
+    <ul>
+      <li><a href="#home">Inicio</a></li>
+      <li><a href="#projects">Proyectos</a></li>
+      <li><a href="#about">Sobre mí</a></li>
+    </ul>
+    <ul>
+      <li><a href="/cv/cv.pdf">CV</a></li>
+    </ul>
   </nav>
-  <div class="flex w-full mx-4 flex-col content-end justify-end gap-y-2">
-    <span class="h-px w-full block bg-[#76e99e]"></span>
-    <span class="h-px w-2/3 block bg-[#76e99e] mr-auto"></span>
+
+  <div
+    id="nav-backdrop"
+    class="absolute inset-0 opacity-0 pointer-events-none transition-all duration-500 ease-in-out bg-[--secondary] backdrop-blur-lg rounded-xl translate-x-[var(--left)] translate-y-[var(--top)] w-[var(--width)] h-[var(--height)]"
+  >
   </div>
 </header>
 
-<style>
-  .r,
-  .l {
-    width: 30px;
-    height: 30px;
-    position: relative;
-    transform: rotate(45deg);
-  }
-  .r {
-    left: -30px;
-  }
+<script is:inline>
+  document.addEventListener("astro:page-load", () => {
+    const $goToTopButton = document.querySelector("a[href='#home']");
+    $goToTopButton?.addEventListener("click", (e) => {
+      setTimeout(() => {
+        window.scrollTo({ top: 0 });
+      }, 100);
+    });
+    const $listItems = document.querySelectorAll("header li");
+    const $navBackdrop = document.querySelector("#nav-backdrop");
 
-  .l {
-    right: -30px;
-  }
-</style>
+    $listItems.forEach((item) => {
+      item.addEventListener("mouseenter", () => {
+        const { left, top, width, height } = item.getBoundingClientRect();
+
+        $navBackdrop.style.setProperty("--left", `${left}px`);
+        $navBackdrop.style.setProperty("--top", `${top}px`);
+        $navBackdrop.style.setProperty("--width", `${width}px`);
+        $navBackdrop.style.setProperty("--height", `${height}px`);
+
+        $navBackdrop.style.opacity = "0.2";
+        $navBackdrop.style.visibility = "visible";
+      });
+
+      item.addEventListener("mouseleave", () => {
+        $navBackdrop.style.opacity = "0";
+        $navBackdrop.style.visibility = "hidden";
+      });
+    });
+
+    const navLinks = {
+      home: document.querySelector('a[href="#home"]'),
+      projects: document.querySelector('a[href="#projects"]'),
+      about: document.querySelector('a[href="#about"]'),
+    };
+
+    const sections = {
+      home: document.querySelector("#home"),
+      projects: document.querySelector("#projects"),
+      about: document.querySelector("#about"),
+    };
+
+    const observerOptions = {
+      root: null,
+      rootMargin: "20px",
+      threshold: 0.3,
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        const { isIntersecting } = entry;
+        if (isIntersecting) {
+          Object.values(navLinks).forEach((link) =>
+            link.classList.remove("text-[--secondary-500]")
+          );
+          const activeLink = navLinks[entry.target.id];
+          activeLink.classList.add("text-[--secondary-500]");
+          console.log(`${activeLink} change to new color`);
+        }
+      });
+    }, observerOptions);
+
+    Object.values(sections).forEach((section) => observer.observe(section));
+  });
+</script>

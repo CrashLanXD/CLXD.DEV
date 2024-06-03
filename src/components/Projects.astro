@@ -2,64 +2,63 @@
 import GitHubIcon from "./icons/GitHubIcon.astro";
 import LinkButton from "../components/LinkButton.astro";
 import LinkIcon from "./icons/LinkIcon.astro";
-
-const PROJECTS = [
-  {
-    title: "{ 101 proyectos js }",
-    description:
-      "Diseño e idea originales de Midudev, '101 Proyectos de Código Abierto' desarrollados en JavaScript Vanilla. Esta iniciativa encapsula una amplia gama de proyectos, ofreciendo un vistazo al potencial y la versatilidad de JavaScript en su forma más pura. Desde su diseño hasta su implementación, cada proyecto representa una expresión única de creatividad y habilidad técnica, destinada a inspirar y educar a la comunidad de desarrolladores.",
-    link: "https://javascript101clxd.netlify.app",
-    github: "https://github.com/CrashLanXD/101-proyectos-javascript",
-    image: "/projects/101proyectosJS.webp",
-  },
-];
+import projects from "../utils/projects.json";
+import { Image } from "astro:assets";
 ---
 
 <div class="flex flex-col gap-y-16">
-  {
-    PROJECTS.map(({ image, title, description, link, github }) => (
-      <article class="flex flex-col space-x-0 group">
-        <div class="w-full">
-          <a
-            href={github}
-            target="_blank"
-            aria-label={`Ir al repositorio del proyecto ${title}`}
-            class="relative flex flex-col items-center gap-8 transition duration-500 ease-in-out transform shadow-xl overflow-clip rounded-xl sm:rounded-xl md:hover:-translate-y-1 md:hover:shadow-2xl"
-          >
-            <img
-              alt={`Imagen del proyecto ${title}`}
-              class="object-cover object-top w-full h-56 transition duration-500 sm:h-full md:scale-110 aspect-video"
-              loading="lazy"
-              src={image}
-            />
-          </a>
-        </div>
+  {projects.map(({ image, title, description, link, github }) => (
+    <article class="grid grid-cols-1 md:grid-cols-2 gap-4 group">
+      <a
+        href={github}
+        target="_blank"
+        aria-label={`Ir al repositorio del proyecto ${title}`}
+        class="relative flex transition duration-500 ease-in-out transform shadow-xl rounded-xl md:hover:-translate-y-1 md:hover:shadow-2xl"
+      >
+        <Image
+          src={image}
+          alt={`Proyecto ${title}`}
+          width={1920}
+          height={1080}
+          loading="eager"
+          class="object-cover object-top w-full rounded-xl transition duration-500 flex justify-center items-center text-xl"
+        />
+      </a>
 
-        <div class="w-full pt-4">
-          <h3 class="text-4xl font-bold text-neutral-800 dark:text-neutral-300">
+      <div class="flex flex-col gap-2 justify-between p-4">
+        <header>
+          <h3 class="text-4xl font-bold text-[--text-900]">
             {title}
           </h3>
-          <div class="flex flex-wrap mt-2">
-            <p class="mt-2 text-neutral-700 dark:text-neutral-400 text-pretty">
-              {description}
-            </p>
-            <footer class="flex items-end justify-start mt-4 gap-x-4">
-              {github && (
-                <LinkButton href={github}>
-                  <GitHubIcon class="size-6" />
-                  Code
-                </LinkButton>
-              )}
-              {link && (
-                <LinkButton href={link}>
-                  <LinkIcon class="size-4" />
-                  Preview
-                </LinkButton>
-              )}
-            </footer>
-          </div>
-        </div>
-      </article>
-    ))
-  }
+        </header>
+
+        <main>
+          <p class="mt-2 text-[--text-800] text-pretty">
+            {description}
+          </p>
+        </main>
+
+        <footer class="flex items-center justify-start mt-4 gap-x-4">
+          {github && (
+            <LinkButton href={github}>
+              <GitHubIcon class="size-6" />
+              Código
+            </LinkButton>
+          )}
+          {link && (
+            <LinkButton href={link}>
+              <LinkIcon class="size-4" />
+              Visitar
+            </LinkButton>
+          )}
+        </footer>
+      </div>
+    </article>
+  ))}
 </div>
+
+<style>
+  img {
+    aspect-ratio: 1.93/1;
+  }
+</style>

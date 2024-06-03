@@ -1,0 +1,39 @@
+---
+// Este es tu archivo Clock.astro
+---
+
+<time class="text-4xl md:text-6xl font-semibold [&>span]:font-mono" id="time" datetime=""></time>
+<span class="text-2xl" id="timezone">CDMX</span>
+
+<script is:inline>
+  const updateClock = () => {
+    const now = new Date();
+    const timeOptions = {
+      timeZone: "America/Mexico_City",
+      hour: "numeric",
+      minute: "numeric",
+      second: "numeric",
+      hour12: true,
+    };
+    const timeString = now.toLocaleTimeString("en-US", timeOptions);
+
+    const isoString = now
+      .toLocaleString("sv-SE", { timeZone: "America/Mexico_City" })
+      .replace(" ", "T");
+    const timeParts = timeString.split(/(:| )/);
+    const formattedTime = timeParts
+      .map((part) => {
+        if (/\d/.test(part)) return `<span>${part}</span>`;
+        return part;
+      })
+      .join("");
+
+    document.getElementById("time").innerHTML = `${formattedTime} CST`;
+    document.getElementById("time").setAttribute("datetime", isoString);
+  };
+
+  document.addEventListener("astro:page-load", () => {
+    requestAnimationFrame(updateClock);
+    setInterval(updateClock, 1000);
+  });
+</script>

@@ -11,53 +11,22 @@ import Footer from "../components/Footer.astro";
 ---
 
 <Layout
-  title="Porfolio de CrashLanXD - Desarollador fullstack"
+  title="Porfolio de CrashLanXD - Desarrollador fullstack"
   description="Hola!, soy CrashLanXD ;)"
 >
-<Header/>
-  <main class="pt-14 min-h-full">
-    <Section class="py-24 md:py-36" id="home">
-      <Hero />
-    </Section>
+  <Header />
+  <main class="">
+    <Hero />
 
-    <Section id="projects">
-      <h2
-        class="flex items-center mb-6 text-5xl font-semibold gap-x-3 text-black/80 dark:text-white"
-      >
-        <CodeIcon class="size-16" />Proyectos
-      </h2>
+    <Section class="section" id="projects">
+      <span  slot="title"><CodeIcon class="size-16" />Proyectos</span>
       <Projects />
     </Section>
 
-    <Section id="aboutMe" class="mt-36">
-      <h2
-        class="flex items-center mb-6 text-5xl font-semibold gap-x-3 text-black/80 dark:text-white"
-      >
-        <UserIcon class="size-16" />Sobre mí
-      </h2>
+    <Section class="section mt-24" id="about">
+      <span slot="title"><UserIcon class="size-16" />Sobre mí</span>
       <AboutMe />
     </Section>
   </main>
-  <Footer/>
+  <Footer />
 </Layout>
-
-<style>
-  html {
-    font-family:
-      system-ui,
-      -apple-system,
-      BlinkMacSystemFont,
-      "Segoe UI",
-      Ubuntu,
-      sans-serif;
-  }
-  main {
-    margin: auto;
-    padding: 1rem;
-    width: 800px;
-    max-width: calc(100% - 2rem);
-    color: white;
-    font-size: 20px;
-    line-height: 1.6;
-  }
-</style>
