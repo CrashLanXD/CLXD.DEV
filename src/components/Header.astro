@@ -39,7 +39,7 @@ import CLXD from "./icons/CLXD.astro";
 <script is:inline>
   document.addEventListener("astro:page-load", () => {
     const $goToTopButton = document.querySelector("a[href='#home']");
-    $goToTopButton?.addEventListener("click", (e) => {
+    $goToTopButton?.addEventListener("click", () => {
       setTimeout(() => {
         window.scrollTo({ top: 0 });
       }, 100);
