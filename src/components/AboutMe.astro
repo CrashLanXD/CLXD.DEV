@@ -18,20 +18,20 @@ const age = 16;
   class="grid grid-cols-2 md:grid-cols-4 gap-4 text-xl [&>div]:bg-[--background] [&>div]:rounded-xl [&>div]:px-7 [&>div]:p-5"
 >
   <div class="col-span-2 md:col-span-3 row-start-1 flex flex-col">
-    <h4
+    <h3
       class="text-2xl [&>strong]:text-[--secondary-600] [&>strong]:font-semibold py-3"
     >
       Soy <strong>Eduardo Sanchez.</strong>
-    </h4>
+    </h3>
     <p class="text-pretty">
       Un desarrollador de software que disfruta los desafíos. Me encanta crear
       problemas y encontrar soluciones. Los algoritmos y la lógica detrás de
       cómo funcionan las computadoras siempre han sido de gran interés para mí.
     </p>
   </div>
-  <div class="col-span-2 md:row-start-1 flex justify-center">
+  <div class="col-span-2 md:col-span-1 md:row-start-1 flex justify-center">
     <Image
-      src="/images/clxd_duo.webp"
+      src="/images/clxd_duo_happy.webp"
       alt={personalImageAlt}
       width={224}
       height={224}
@@ -76,7 +76,7 @@ const age = 16;
 
   <div class="col-span-2 row-start-3 flex flex-col justify-center gap-y-3">
     <h3>Tech Stack</h3>
-    <div class="flex justify-evenly [&>svg]:size-10 [&>svg]:md:size-16">
+    <div class="flex justify-evenly [&>svg]:size-10 [&>svg]:md:size-11 [&>svg]:xl:size-16">
       <HTMLIcon/>
       <CSSIcon/>
       <JSIcon/>
