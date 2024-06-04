@@ -1,8 +1,7 @@
----
-// Este es tu archivo Clock.astro
----
-
-<time class="text-4xl md:text-6xl font-semibold [&>span]:font-mono" id="time" datetime=""></time>
+<time
+  class="text-4xl md:text-6xl font-semibold [&>span]:font-mono"
+  id="time"
+  datetime=""></time>
 <span class="text-2xl" id="timezone">CDMX</span>
 
 <script is:inline>
@@ -22,10 +21,7 @@
       .replace(" ", "T");
     const timeParts = timeString.split(/(:| )/);
     const formattedTime = timeParts
-      .map((part) => {
-        if (/\d/.test(part)) return `<span>${part}</span>`;
-        return part;
-      })
+      .map((part) => (/\d/.test(part) ? `<span>${part}</span>` : part))
       .join("");
 
     document.getElementById("time").innerHTML = `${formattedTime} CST`;
@@ -33,7 +29,7 @@
   };
 
   document.addEventListener("astro:page-load", () => {
-    requestAnimationFrame(updateClock);
+    updateClock();
     setInterval(updateClock, 1000);
   });
 </script>
