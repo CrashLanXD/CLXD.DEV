@@ -1,16 +1,25 @@
 ---
 import CLXD from "./icons/CLXDIcon.astro";
+
+const STATUS = {
+  Online: { color: "bg-green-500", title: "Disponible para trabajar." },
+  Idle: { color: "bg-yellow-500", title: "Algo ocupado, pero disponible para propuestas." },
+  DoNotDisturb: { color: "bg-red-500", title: "No disponible para trabajar." },
+};
+
+const currentStatus = STATUS.Online;
 ---
 
 <header
   class="fixed top-0 w-full z-20 py-2 px-4 md:px-10 flex backdrop-blur-lg justify-between items-center text-sm md:text-lg text-[--text] bg-neutral-200/75 dark:bg-neutral-900/75"
 >
-  <div class="h-full gap-2 hidden md:flex items-center">
+  <div class="h-full gap-2 hidden md:flex items-center" title={currentStatus.title}>
     <CLXD
       class="size-10 p-1 text-white fill-neutral-500 bg-[#121212] rounded-full"
     />
     <div>
-      <h3>CLXD</h3>
+      <h3 class="inline-flex items-center">CLXD</h3>
+      <div class={`inline-block rounded-full size-3 opacity-70 ${currentStatus.color}`}></div>
       <h4>Frontend Developer</h4>
     </div>
   </div>
