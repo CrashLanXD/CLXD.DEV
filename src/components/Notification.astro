@@ -9,11 +9,11 @@ const { id, text } = Astro.props;
 
 <div
   id={id}
-  class="hidden opacity-0 transition-opacity fixed bottom-5 right-5 items-center w-full max-w-xs p-4 mb-4 text-[--text-600] bg-[--background-50] rounded-lg shadow"
+  class="hidden opacity-0 z-50 transition-opacity fixed bottom-5 right-5 items-center w-full max-w-xs p-4 mb-4 text-[--text-700] backdrop-blur bg-neutral-100/30 dark:bg-neutral-950/30 rounded-lg shadow"
   role="alert"
 >
   <div
-    class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-[--primary-400] bg-[--primary-100] rounded-lg"
+    class="inline-flex items-center justify-center flex-shrink-0 size-8 text-[--primary-400] bg-[--primary-100] rounded-lg"
   >
     <svg
       class="size-5"
@@ -31,7 +31,7 @@ const { id, text } = Astro.props;
   <div class="ms-3 text-sm font-normal">{text}</div>
   <button
     type="button"
-    class="ms-auto -mx-1.5 -my-1.5 p-1.5 rounded-lg bg-[--background] text-[--text-400] hover:text-[--text-900] hover:bg-[--background-100] inline-flex items-center justify-center size-8 transition-colors"
+    class="ms-auto -mx-1.5 -my-1.5 p-1.5 rounded-lg bg-[--background-100] text-[--text-400] hover:text-[--text-900] hover:bg-[--background] inline-flex items-center justify-center size-8 transition-colors"
     data-dismiss-target=`#${id}`
     aria-label="Close"
   >
