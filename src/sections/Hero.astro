@@ -81,27 +81,29 @@ const email = "crashlanxd@gmail.com";
 <Notification id="copy-success" text="email copiado! ;)" />
 
 <script>
-  const $emailButton = document.getElementById("emailButton") as HTMLButtonElement ;
-  const $copySuccess = document.getElementById("copy-success");
+  document.addEventListener("DOMContentLoaded", () => {
+    const $emailButton = document.getElementById("emailButton") as HTMLButtonElement ;
+    const $copySuccess = document.getElementById("copy-success");
 
-  if (!$emailButton || !$copySuccess) return;
+    if (!$emailButton || !$copySuccess) return;
 
-  $emailButton.addEventListener("click", () => {
-    navigator.clipboard
-      .writeText($emailButton.innerText)
-      .then(() => {
-        $copySuccess.style.display = "flex";
-        setTimeout(() => ($copySuccess.style.opacity = "1"), 200);
-        setTimeout(() => ($copySuccess.style.opacity = "0"), 3000);
-        setTimeout(() => ($copySuccess.style.display = "none"), 3150);
-      })
-      .catch((err) => console.error("Error al copiar el texto: ", err));
-  });
+    $emailButton.addEventListener("click", () => {
+      navigator.clipboard
+        .writeText($emailButton.innerText)
+        .then(() => {
+          $copySuccess.style.display = "flex";
+          setTimeout(() => ($copySuccess.style.opacity = "1"), 200);
+          setTimeout(() => ($copySuccess.style.opacity = "0"), 3000);
+          setTimeout(() => ($copySuccess.style.display = "none"), 3150);
+        })
+        .catch((err) => console.error("Error al copiar el texto: ", err));
+    });
 
-  const $closeButton = document.querySelector(
-    '[data-dismiss-target="#copy-success"]'
-  );
-  $closeButton?.addEventListener("click", () => {
-    $copySuccess.style.display = "none";
+    const $closeButton = document.querySelector(
+      '[data-dismiss-target="#copy-success"]'
+    );
+    $closeButton?.addEventListener("click", () => {
+      $copySuccess.style.display = "none";
+    });
   });
 </script>
