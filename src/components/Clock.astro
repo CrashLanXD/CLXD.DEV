@@ -3,8 +3,7 @@
   id="time"
   datetime=""></time>
 <span class="text-2xl" id="timezone">CDMX</span>
-
-<script is:inline>
+<script>
   const updateClock = () => {
     const now = new Date();
     const timeOptions = {
@@ -14,18 +13,23 @@
       second: "numeric",
       hour12: true,
     };
-    const timeString = now.toLocaleTimeString("en-US", timeOptions);
+
+    const timeString = now.toLocaleTimeString("en-US", timeOptions as any);
 
     const isoString = now
       .toLocaleString("sv-SE", { timeZone: "America/Mexico_City" })
       .replace(" ", "T");
+
     const timeParts = timeString.split(/(:| )/);
     const formattedTime = timeParts
       .map((part) => (/\d/.test(part) ? `<span>${part}</span>` : part))
       .join("");
 
-    document.getElementById("time").innerHTML = `${formattedTime} CST`;
-    document.getElementById("time").setAttribute("datetime", isoString);
+    const timeElement = document.getElementById("time");
+    if (timeElement) {
+      timeElement.innerHTML = `${formattedTime} CST`;
+      timeElement.setAttribute("datetime", isoString);
+    }
   };
 
   document.addEventListener("astro:page-load", () => {
