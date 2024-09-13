@@ -1,5 +1,6 @@
 ---
-import CLXD from "./icons/CLXDIcon.astro";
+import ThemeToggle from "@/components/ThemeToggle.astro";
+import CLXD from "@/icons/CLXDIcon.astro";
 
 const STATUS = {
   Online: { color: "bg-green-500", title: "Disponible para trabajar." },
@@ -7,7 +8,7 @@ const STATUS = {
   DoNotDisturb: { color: "bg-red-500", title: "No disponible para trabajar." },
 };
 
-const currentStatus = STATUS.Idle;
+const currentStatus = STATUS.Online;
 ---
 
 <header
@@ -23,6 +24,8 @@ const currentStatus = STATUS.Idle;
       <h4>Frontend Developer</h4>
     </div>
   </div>
+
+  <ThemeToggle />
 
   <nav
     class="flex mx-auto md:mx-0 gap-2 md:gap-12 [&>ul]:p-1 [&>ul]:bg-[--background] [&>ul]:rounded-xl [&>ul]:flex [&>ul>li]:flex [&>ul>li]:items-center [&>ul>li]:text-center [&>ul>li>a]:inline-block [&>ul>li>a]:px-4 [&>ul>li>a]:py-2 [&>ul>li>a]:transition-colors font-medium"
@@ -44,7 +47,7 @@ const currentStatus = STATUS.Idle;
   </div>
 </header>
 
-<script is:inline>
+<script>
   document.addEventListener("astro:page-load", () => {
     const $goToTopButton = document.querySelector("a[href='#home']");
     $goToTopButton?.addEventListener("click", () => {
@@ -52,8 +55,8 @@ const currentStatus = STATUS.Idle;
         window.scrollTo({ top: 0 });
       }, 100);
     });
-    const $listItems = document.querySelectorAll("header li");
-    const $navBackdrop = document.querySelector("#nav-backdrop");
+    const $listItems = document.querySelectorAll("header li") as NodeListOf<HTMLLIElement>;
+    const $navBackdrop = document.querySelector("#nav-backdrop") as HTMLDivElement;
 
     $listItems.forEach((item) => {
       item.addEventListener("mouseenter", () => {
@@ -97,15 +100,17 @@ const currentStatus = STATUS.Idle;
         const { isIntersecting } = entry;
         if (isIntersecting) {
           Object.values(navLinks).forEach((link) =>
-            link.classList.remove("text-[--secondary-500]")
+            link?.classList.remove("text-[--secondary-500]")
           );
-          const activeLink = navLinks[entry.target.id];
-          activeLink.classList.add("text-[--secondary-500]");
+          const activeLink = navLinks[entry.target.id as keyof typeof navLinks];
+          activeLink?.classList.add("text-[--secondary-500]");
           console.log(`${activeLink} change to new color`);
         }
       });
     }, observerOptions);
 
-    Object.values(sections).forEach((section) => observer.observe(section));
+    Object.values(sections).forEach((section) => {
+      if (section) observer.observe(section);
+    });
   });
 </script>
