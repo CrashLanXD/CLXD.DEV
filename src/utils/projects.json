@@ -1,9 +1,20 @@
 [
   {
     "title": "{ 101 proyectos js }",
-    "description": "Una iniciativa de Midudev. Colección de proyectos de código abierto, desarrollados exclusivamente con HTML, CSS y JavaScript vanilla. El punto de esto es ser una web que contenga varias ideas lo mas vanilla posibles y mostrar lo que se puede crear con JavaScript, ya sea para diversion, alguna herramienta util o mas",
+    "description": "Una iniciativa de Midudev. Colección de proyectos de código abierto, desarrollados exclusivamente con HTML, CSS y JavaScript vanilla. El punto de esto es ser una web que contenga varias ideas lo más vanilla posibles y mostrar lo que se puede crear con JavaScript, ya sea para diversión, alguna herramienta útil o más.",
     "link": "https://clxd101js.netlify.app/",
     "github": "https://github.com/CrashLanXD/101-proyectos-javascript",
-    "image": "/projects/101.webp"
+    "image": "/projects/101.webp",
+    "img-width": 768,
+    "img-height": 512
+  },
+  {
+    "title": "Cecytem Marketplace",
+    "description": "Un proyecto escolar de tienda en línea desarrollado con Astro y Preact. Cecytem Marketplace incluye secciones como una página de inicio, una sección 'About' que explica el propósito del proyecto y una tienda donde los usuarios pueden explorar productos. El sitio es una demo funcional que llega hasta el proceso de checkout, pero no completa la compra real, sirviendo como una demostración del flujo de una tienda en línea.",
+    "link": "https://cecytem-marketplace.vercel.app/",
+    "github": "https://github.com/CrashLanXD/cecytem_marketplace",
+    "image": "/projects/cecytem-marketplace.webp",
+    "img-width": 960,
+    "img-height": 640
   }
 ]
