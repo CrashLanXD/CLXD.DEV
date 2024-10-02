@@ -8,6 +8,8 @@ export default {
         primary: "#72e475",
         secondary: "#72e39e",
         accent: "#cde372",
+        light: "#f7f4f2",
+        dark: "#1e1e1e",
         text: {
           DEFAULT: "var(--text)",
           50: "var(--text-50)",

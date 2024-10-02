@@ -1,0 +1,45 @@
+---
+import Layout from "@/layouts/Layout.astro";
+---
+
+<Layout title="404 404 404 404 404" description="404 Page not found">
+  <main
+    class="bg-light dark:bg-neutral-900 mt-16 px-6 py-2 flex flex-col justify-center"
+  >
+    <div class="flex flex-col gap-y-3 px-1 py-3">
+      <h1 class="text-4xl capitalize">// 404 page not found</h1> 
+      <p>Sorry about that, but the page you are looking for could not be found.</p>
+      <p>Try checking the URL for errors, or head back to the <a class="hover:underline" href="/">home page</a>.</p>
+    </div>
+
+    <a
+      href="/"
+      class="text-xl mt-16 font-bold rounded border border-dark dark:border-light w-full h-20 md:h-56 grid place-items-center text-center hover:bg-dark hover:text-light transition-colors dark:hover:bg-light dark:hover:text-dark"
+      >Go home</a
+    >
+
+    <div class="text-[calc(10.7px+((52-10.7)*(100vw-390px)/(1728-390)))] gap-y-3 font-mono leading-[50%] whitespace-pre flex flex-col mx-auto my-16">
+      {
+        Array.from({ length: 4 }, () => 
+          <code>
+            -------/\\\--------/\\\\\\\---------------/\\\--------<br/>
+            -----/\\\\\------/\\\/////\\\-----------/\\\\\--------<br/>
+            ----/\\\/\\\-----/\\\----\//\\\--------/\\\/\\\-------<br/>
+            ---/\\\/\/\\\----\/\\\-----\/\\\------/\\\/\/\\\------<br/>
+            --/\\\/--\/\\\----\/\\\-----\/\\\----/\\\/--\/\\\-----<br/>
+            -/\\\\\\\\\\\\\\\\-\/\\\-----\/\\\--/\\\\\\\\\\\\\\\\-<br/>
+            -\///////////\\\//--\//\\\----/\\\--\///////////\\\//-<br/>
+            ------------\/\\\-----\///\\\\\\\/-------------\/\\\--<br/>
+            -------------\///--------\///////---------------\///--<br/>
+          </code>
+        )
+      }
+    </div>
+
+    <a
+      href="/"
+      class="text-xl mb-16 font-bold rounded border border-dark dark:border-light w-full h-20 md:h-56 grid place-items-center text-center hover:bg-dark hover:text-light transition-colors dark:hover:bg-light dark:hover:text-dark"
+      >Go home...</a
+    >
+  </main>
+</Layout>
