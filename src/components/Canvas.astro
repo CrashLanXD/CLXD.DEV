@@ -1,0 +1,126 @@
+---
+const { class: className } = Astro.props;
+---
+
+<canvas class={className} id="canvas"></canvas>
+
+<script>
+  const vertexShaderSource = `
+  attribute vec2 a_position;
+  varying vec2 v_texCoord;
+  void main() {
+    v_texCoord = a_position * 0.5 + 0.5;
+    gl_Position = vec4(a_position, 0, 1);
+  }
+  `;
+
+  const fragmentShaderSource = `
+  precision mediump float;
+  uniform float iTime;
+  uniform vec2 iResolution;
+  varying vec2 v_texCoord;
+  void mainImage(out vec4 fragColor, vec2 fragCoord) {
+    float mr = min(iResolution.x, iResolution.y);
+    vec2 uv = (fragCoord * 2.0 - iResolution.xy) / mr;
+    float d = -iTime * 0.5;
+    float a = 0.0;
+    for (float i = 0.0; i < 8.0; ++i) {
+        a += cos(i - d - a * uv.x);
+        d += sin(uv.y * i + a);
+    }
+    d += iTime * 0.5;
+    vec3 col = vec3(cos(uv * vec2(d, a)) * 0.6 + 0.4, cos(a + d) * 0.4 + 0.5);
+    col = cos(col * cos(vec3(d, a, 2.5)) * 0.5 + 0.5);
+    fragColor = vec4(col, 1);
+  }
+  void main() {
+    mainImage(gl_FragColor, gl_FragCoord.xy);
+  }
+  `;
+
+  const createShader = (gl: WebGLRenderingContext, type: number, source: string) => {
+    const shader = gl.createShader(type);
+    if (!shader) throw new Error("Could not create shader");
+    gl.shaderSource(shader, source);
+    gl.compileShader(shader);
+    if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+      gl.deleteShader(shader);
+      throw new Error(gl.getShaderInfoLog(shader) || "Unknown error creating shader");
+    }
+    return shader;
+  };
+
+  const createProgram = (gl: WebGLRenderingContext, vertexShader: WebGLShader, fragmentShader: WebGLShader) => {
+    const program = gl.createProgram();
+    if (!program) throw new Error("Could not create program");
+    gl.attachShader(program, vertexShader);
+    gl.attachShader(program, fragmentShader);
+    gl.linkProgram(program);
+    if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
+      gl.deleteProgram(program);
+      throw new Error(gl.getProgramInfoLog(program) || "Unknown error creating program");
+    }
+    return program;
+  }
+
+  const main = () => {
+    const canvas = document.getElementById("canvas") as HTMLCanvasElement;
+    const gl = canvas.getContext("webgl2");
+    if (!gl) throw new Error("Could not get WebGL context");
+
+    const vertexShader = createShader(gl, gl.VERTEX_SHADER, vertexShaderSource);
+    const fragmentShader = createShader(gl, gl.FRAGMENT_SHADER, fragmentShaderSource);
+    if (!vertexShader || !fragmentShader) throw new Error("Could not create shaders");
+    const program = createProgram(gl, vertexShader, fragmentShader);
+
+    if (!program) throw new Error("Could not create program");
+
+    const positionAttributeLocation = gl.getAttribLocation(program, "a_position");
+    const iTimeLocation = gl.getUniformLocation(program, "iTime");
+    const iResolutionLocation = gl.getUniformLocation(program, "iResolution");
+
+    const positionbuffer = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, positionbuffer);
+
+    const positions = [
+      -1, -1,
+      1,  -1,
+      -1,  1,
+      1,   1,
+    ];
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(positions), gl.STATIC_DRAW);
+
+    const vao = gl.createVertexArray();
+    gl.bindVertexArray(vao);
+    gl.enableVertexAttribArray(positionAttributeLocation);
+    gl.vertexAttribPointer(positionAttributeLocation, 2, gl.FLOAT, false, 0, 0);
+
+    const resizeCanvas = () => {
+      canvas.width = window.innerWidth < 1080 ? window.innerWidth : 1080; // Aspect ratio: 16:9
+      canvas.height = window.innerHeight < 800 ? window.innerHeight : 800;
+      gl.viewport(0, 0, canvas.width, canvas.height);
+    }
+
+    window.addEventListener("resize", resizeCanvas);
+    resizeCanvas();
+
+    let startTime = 0;
+
+    const render = () => {
+      gl.clear(gl.COLOR_BUFFER_BIT);
+      const time = (startTime = startTime + 1 / 60);
+      gl.useProgram(program);
+
+      gl.bindVertexArray(vao);
+
+      gl.uniform1f(iTimeLocation, time);
+      gl.uniform2f(iResolutionLocation, canvas.width, canvas.height);
+      gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+      requestAnimationFrame(render);
+    }
+
+    render();
+  }
+
+  main();
+</script>
